@@ -15,21 +15,29 @@ button{
     float: left;
     color: rgb(10, 10, 10);
     height: 100%;
-    width: 125px;
+    width: 150px;
     margin: 0.3rem 0;
     background-image: url("./logoDog.jpg");
     background-size: cover;
     border-radius: 4px;
+    padding-left: 50px;
 }
 
 .header_container_left{
     margin: 0 6%;
-    padding-bottom: 0.5rem;
-    display: block;
+    padding-bottom: 0.5rem;    
+    display: flex;
 }
 
 .header_left{
-    padding-top: 0.6rem;
+    padding-top: 0.8rem;
+    text-align: left;
+    padding-left: 200px;
+}
+
+.titulo{
+    color: #2725b6;
+    padding-bottom: 15px;
 }
 
 .container_filters{
@@ -63,7 +71,7 @@ button{
 }
 
 .button_add_dog{
-    width: 100%;
+    width: 180px;
     max-width: 370px;
     font-size: 0.9rem; 
     background: none;
@@ -74,9 +82,11 @@ button{
     outline: 0.1rem solid #2725b6;
     text-shadow: 0 0 3px #2725b6;
     background: #2725b6;
-
     box-shadow: 5px 3px 5px 0.5px rgba(0,0,0,0.6);
-}
+    margin-top: 86px;
+    margin-right: 200px;
+
+}   
 
 .button_add_dog:hover{ color: #2725b6; }
 
@@ -112,6 +122,7 @@ button{
     grid-gap: 5% 0.9%;
     justify-items: center;
     padding: 2rem 0 2rem 0;
+
 }
 
 .container_card{ /* estilos de carta individual */

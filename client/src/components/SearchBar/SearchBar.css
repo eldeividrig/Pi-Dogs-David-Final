@@ -9,7 +9,7 @@
     width: 47%;
     font-size: 1.3rem;
     border: 1px solid #2725b6;
-    border-top: none;
+    /* border-top: none; */
     outline: none;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;

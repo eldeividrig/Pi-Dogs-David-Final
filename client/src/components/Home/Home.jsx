@@ -53,33 +53,28 @@ const Home = () => {
 
   return (
     <>
-
       <header className="header">
         <div className="header_container_left">
           <Link to="/">
             <div className="logo"></div>
           </Link>
+
           <div className="header_left">
+            <h2 className="titulo">Enciclopedia de Razas de Perros</h2>
             <SearchBar />
             <div className="container_filters">
               <select onChange={handleOrderByName}>
-                <option value={'default'}>
-                  Orden Alfabetico
-                </option>
+                <option value={"default"}>Orden Alfabetico</option>
                 <option value="A-Z">A-Z</option>
                 <option value="Z-A">Z-A</option>
               </select>
               <select onChange={handleOrderByWeight}>
-                <option value={'default'}>
-                  Filtrar por peso
-                </option>
+                <option value={"default"}>Filtrar por peso</option>
                 <option value="max_weight">Max</option>
                 <option value="min_weight">Min</option>
               </select>
               <select onChange={handleFilterByTemperament}>
-                <option value={'default'}>
-                  Temperamentos
-                </option>
+                <option value={"default"}>Temperamentos</option>
                 <option value="Todos">Todos</option>
                 {allTemperaments?.map((temp) => (
                   <option value={temp.name} key={temp.id}>
@@ -106,20 +101,31 @@ const Home = () => {
             return (
               <div className="container_card" key={el.id}>
                 <Link to={"/dog-detail/" + el.id}>
-                  {
-                    <Card key={el.id} image={el.image} name={el.name} temperaments={el.temperaments[0].name ? el.temperaments.map(el => el.name) : el.temperaments} />
-                    
+                  {                    
+                    <Card
+                      key={el.id}
+                      image={el.image}
+                      name={el.name}
+                      temperaments={
+                        el.temperaments[0].name
+                          ? el.temperaments.map((el) => el.name)
+                          : el.temperaments
+                      }
+                    />
                   }
                 </Link>
               </div>
-            )
+            );
           })}
         </div>
         <div className="pagination">
-          <Paginate dogsxPage={dogsxPage} allDogs={allDogs.length} paginated={paginated} />
+          <Paginate
+            dogsxPage={dogsxPage}
+            allDogs={allDogs.length}
+            paginated={paginated}
+          />
         </div>
       </div>
-
     </>
   );
 };

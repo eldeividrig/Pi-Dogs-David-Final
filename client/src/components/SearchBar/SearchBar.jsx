@@ -13,7 +13,7 @@ const SearchBar = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();    
     dispatch(getBreed(searchDog));
   }
 
