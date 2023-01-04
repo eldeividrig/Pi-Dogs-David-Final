@@ -102,7 +102,7 @@ const Home = () => {
 
       <div className="main_container_home">
         <div className="container_cards">
-          {currentDogs?.map((el) => {//validacion que existan los datos
+          {currentDogs?.map((el) => {
             return (
               <div className="container_card" key={el.id}>
                 <Link to={"/dog-detail/" + el.id}>
