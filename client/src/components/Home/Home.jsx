@@ -20,6 +20,7 @@ const Home = () => {
   const allTemperaments = useSelector((state) => state.temperaments);
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState("");
+  const [search, setSearch] = useState({campo: ""});
   const dogsxPage = 8;
   const lastIndex = currentPage * dogsxPage;
   const firstIndex = lastIndex - dogsxPage;
@@ -37,18 +38,21 @@ const Home = () => {
   const handleFilterByTemperament = (e) => {
     e.preventDefault();
     dispatch(filterByTemperament(e.target.value));
+    setCurrentPage(1);
   };
 
   const handleOrderByName = (e) => {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setOrder(`Ordenado ${e.target.value}`);
+    setCurrentPage(1);
   };
 
   const handleOrderByWeight = (e) => {
     e.preventDefault();
     dispatch(orderByWeight(e.target.value));
     setOrder(`Ordenado ${e.target.value}`);
+    setCurrentPage(1);
   };
 
   return (
@@ -58,23 +62,22 @@ const Home = () => {
           <Link to="/">
             <div className="logo"></div>
           </Link>
-
           <div className="header_left">
             <h2 className="titulo">Enciclopedia de Razas de Perros</h2>
-            <SearchBar />
+            <SearchBar paginated={paginated} cambiarEstado = {setSearch} estado={search}/>
             <div className="container_filters">
-              <select onChange={handleOrderByName}>
-                <option value={"default"}>Orden Alfabetico</option>
+              <select onChange={handleOrderByName} defaultValue={'DEFAULT'}>
+                <option value="DEFAULT" disabled= "disabled">Orden Alfabetico</option>
                 <option value="A-Z">A-Z</option>
                 <option value="Z-A">Z-A</option>
               </select>
-              <select onChange={handleOrderByWeight}>
-                <option value={"default"}>Filtrar por peso</option>
+              <select onChange={handleOrderByWeight} defaultValue={'DEFAULT'}>
+                <option value="DEFAULT" disabled= "disabled">Filtrar por peso</option>
                 <option value="max_weight">Max</option>
                 <option value="min_weight">Min</option>
               </select>
-              <select onChange={handleFilterByTemperament}>
-                <option value={"default"}>Temperamentos</option>
+              <select onChange={handleFilterByTemperament} defaultValue={'DEFAULT'}>
+                <option value="DEFAULT" disabled= "disabled">Temperamentos</option>
                 <option value="Todos">Todos</option>
                 {allTemperaments?.map((temp) => (
                   <option value={temp.name} key={temp.id}>
@@ -100,17 +103,18 @@ const Home = () => {
           {currentDogs?.map((el) => {
             return (
               <div className="container_card" key={el.id}>
-                <Link to={"/dog-detail/" + el.id}>
-                  {                    
+                
+                <Link to={"/dog-detail/" + el.id}>                  
+                  {                                                            
                     <Card
                       key={el.id}
                       image={el.image}
                       name={el.name}
                       temperaments={
-                        el.temperaments[0].name
+                          el.temperaments[0].name                          
                           ? el.temperaments.map((el) => el.name)
                           : el.temperaments
-                      }
+                        }  
                     />
                   }
                 </Link>

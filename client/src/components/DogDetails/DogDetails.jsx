@@ -49,8 +49,8 @@ export default function DogDetails() {
 
           <div className={`${style.right_container}`}>
             <h1>{nameDog}</h1>
-            <h3>{`Altura: ${heightDog && heightDog[0]} - ${heightDog && heightDog[1]} CM`}</h3>
-            <h3>{`Peso: ${heightDog && weightDog[0]} - ${weightDog && weightDog[1]} KG`}</h3>
+            <h3>{`Altura: ${heightDog && heightDog[0]} - ${heightDog && heightDog[1]} CM`}</h3>            
+            <h3>{`Peso: ${weightDog && weightDog[0]} - ${weightDog && weightDog[1]} KG`}</h3>
             <h3>{`Esperanza de Vida: ${lifeSpanDog}`}</h3>
             <div>
               <h3>Temperamentos:</h3>

@@ -12,6 +12,9 @@ const rootReducer = (state = initialState, action) => {
         if (!element.temperaments[0]) {
           element.temperaments[0] = "Sin Temperamentos";
         }
+        if (element.weight.length < 2) {
+          element.weight[1] = 0;
+        }
       });
       return {
         ...state,
@@ -27,12 +30,11 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case "GET_FILTER_TEMPERAMENTS":
-      const allDogs = state.allDogs;
+      let allDogs = state.allDogs;
       let filteredDogs = [];
       if (action.payload === "Todos") {
         filteredDogs = allDogs;
-      } else {
-        
+      } else {        
         for (let i = 0; i < allDogs.length; i++) {          
           let found = allDogs[i].temperaments.find((t) => t === action.payload);
           if (i > 171) {
@@ -48,6 +50,11 @@ const rootReducer = (state = initialState, action) => {
         dogs: filteredDogs,
       };
     case "GET_BREED":
+      action.payload.forEach((element) => {
+        if (!element.temperaments[0]) {
+          element.temperaments[0] = "Sin Temperamentos";
+        }
+      });
       return {
         ...state,
         dogs: action.payload,
@@ -73,9 +80,10 @@ const rootReducer = (state = initialState, action) => {
               }
               return 0;
             });
+            console.log(sortedName);
       return {
         ...state,
-        dogs: sortedName,
+        allDogs: sortedName,
       };
     case "ORDER_BY_WEIGHT":
       const sortedWeight =
@@ -98,14 +106,14 @@ const rootReducer = (state = initialState, action) => {
               }
               return 0;
             });
+            console.log(sortedWeight);
       return {
         ...state,
-        dogs: sortedWeight,
+        allDogs: sortedWeight,
       };
     case "SHOW_DOG_DETAILS":
       let myDetails = action.payload;
       if (!myDetails[0].temperaments[0]) {
-        //agregamos "no-temperaments" a arreglos sin elementos dentro
         myDetails[0].temperaments[0] = "Sin Temperamentos";
       }
       return {

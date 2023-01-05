@@ -81,7 +81,7 @@ export default function AddDog() {
       max_weight: "",
       life_span: "",
       image: "",
-      temperaments: [],
+      temperaments: []
     });
   };
 
