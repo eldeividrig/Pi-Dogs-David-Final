@@ -16,11 +16,10 @@ import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.dogs);
+  const allDogs = useSelector((state) => state.allDogs);
   const allTemperaments = useSelector((state) => state.temperaments);
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState("");
-  const [search, setSearch] = useState({campo: ""});
   const dogsxPage = 8;
   const lastIndex = currentPage * dogsxPage;
   const firstIndex = lastIndex - dogsxPage;
@@ -64,7 +63,7 @@ const Home = () => {
           </Link>
           <div className="header_left">
             <h2 className="titulo">Enciclopedia de Razas de Perros</h2>
-            <SearchBar paginated={paginated} cambiarEstado = {setSearch} estado={search}/>
+            <SearchBar paginated={paginated} />
             <div className="container_filters">
               <select onChange={handleOrderByName} defaultValue={'DEFAULT'}>
                 <option value="DEFAULT" disabled= "disabled">Orden Alfabetico</option>

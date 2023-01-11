@@ -30,13 +30,14 @@ export function filterByTemperament(payload) {
 export function getBreed(payload) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`/dogs?name=${payload}`);
+      var json = await axios.get(`/dogs?name=${payload}`);      
       return dispatch({
         type: "GET_BREED",
         payload: json.data,
       });
     } catch (error) {
       console.log(error);
+      alert("El perro buscado no existe");
     }
   };
 }

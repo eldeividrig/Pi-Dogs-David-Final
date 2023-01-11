@@ -31,9 +31,10 @@ const rootReducer = (state = initialState, action) => {
 
     case "GET_FILTER_TEMPERAMENTS":
       let allDogs = state.allDogs;
+      let dogs = state.dogs;
       let filteredDogs = [];
-      if (action.payload === "Todos") {
-        filteredDogs = allDogs;
+      if (action.payload === "Todos") {        
+        filteredDogs = dogs;
       } else {        
         for (let i = 0; i < allDogs.length; i++) {          
           let found = allDogs[i].temperaments.find((t) => t === action.payload);
@@ -47,7 +48,7 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        dogs: filteredDogs,
+        allDogs: filteredDogs,
       };
     case "GET_BREED":
       action.payload.forEach((element) => {
@@ -57,7 +58,7 @@ const rootReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        dogs: action.payload,
+        allDogs: action.payload,
       };
     case "ORDER_BY_NAME":
       const sortedName =
@@ -80,7 +81,7 @@ const rootReducer = (state = initialState, action) => {
               }
               return 0;
             });
-            console.log(sortedName);
+            // console.log(sortedName);
       return {
         ...state,
         allDogs: sortedName,
@@ -106,7 +107,7 @@ const rootReducer = (state = initialState, action) => {
               }
               return 0;
             });
-            console.log(sortedWeight);
+            // console.log(sortedWeight);
       return {
         ...state,
         allDogs: sortedWeight,
